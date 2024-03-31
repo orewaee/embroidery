@@ -11,6 +11,8 @@ import (
 )
 
 func Designs(writer http.ResponseWriter, request *http.Request) {
+	writer.Header().Set("Access-Control-Allow-Origin", "*")
+
 	designs := database.GetCollection("designs")
 
 	cur, err := designs.Find(context.TODO(), bson.D{{"visible", true}})

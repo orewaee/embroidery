@@ -13,6 +13,8 @@ import (
 )
 
 func Design(writer http.ResponseWriter, request *http.Request) {
+	writer.Header().Set("Access-Control-Allow-Origin", "*")
+
 	id := request.PathValue("id")
 
 	designs := database.GetCollection("designs")
