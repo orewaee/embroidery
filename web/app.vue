@@ -7,11 +7,19 @@ interface Design {
 
 const {data} = await useFetch("http://localhost:8080/designs");
 const designs = data.value as Design[];
+
+const config = useRuntimeConfig();
 </script>
 
 <template>
     <div class="designs">
-        <img v-for="(design, i) in designs" :key="i" :src="'http://localhost:8080/design/' + design.id" :alt="i">
+        <img
+            v-for="(design, i) in designs"
+            :src="config.apiUrl + 'design/' + design.id"
+            :alt="i"
+            draggable="false"
+            :key="i"
+        >
     </div>
 </template>
 
@@ -42,6 +50,8 @@ body {
 
         aspect-ratio: 3 / 4;
         object-fit: cover;
+
+        background-color: #0a0b0a;
     }
 }
 </style>
