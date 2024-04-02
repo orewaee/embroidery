@@ -1,8 +1,8 @@
 <script setup lang="ts">
 interface Design {
     id: string,
-    path: string,
-    extension: string
+    name: string,
+    tag: string
 }
 
 const {data} = await useFetch("http://localhost:8080/designs");
@@ -13,13 +13,17 @@ const config = useRuntimeConfig();
 
 <template>
     <div class="designs">
-        <img
-            v-for="(design, i) in designs"
-            :src="config.apiUrl + 'design/' + design.id"
-            :alt="i"
-            draggable="false"
-            :key="i"
-        >
+        <div class="design" v-for="(design, i) in designs" :key="i">
+            <img
+                :src="config.apiUrl + 'design/' + design.id"
+                :alt="i"
+                draggable="false"
+            >
+            <div class="info">
+                <p class="name">{{design.name}}</p>
+                <p class="tag">{{design.tag}}</p>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -28,6 +32,8 @@ body {
     color: #fff;
 
     background-color: #000;
+
+    font-family: Inter, sans-serif;
 }
 
 * {
@@ -45,13 +51,38 @@ body {
     margin: 0 auto;
     padding: 24px;
 
-    img {
+    .design {
         max-width: 264px;
 
-        aspect-ratio: 3 / 4;
-        object-fit: cover;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
 
-        background-color: #0a0b0a;
+        img {
+            width: 100%;
+
+            aspect-ratio: 3 / 4;
+            object-fit: cover;
+
+            background-color: #0a0b0a;
+        }
+
+        .info {
+            display: flex;
+            justify-content: space-between;
+
+            font-weight: 600;
+
+            .tag {
+                color: #000;
+
+                background-color: #fff;
+
+                border-radius: 12px;
+
+                padding: 0 8px;
+            }
+        }
     }
 }
 </style>
