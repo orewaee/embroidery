@@ -4,11 +4,22 @@ import (
 	"github.com/orewaee/embroidery-api/config"
 	"github.com/orewaee/embroidery-api/database"
 	"github.com/orewaee/embroidery-api/handlers"
+	"github.com/orewaee/embroidery-api/logger"
 	"log"
 	"net/http"
 )
 
 func main() {
+	if err := logger.Load(); err != nil {
+		log.Fatalln(err)
+	}
+
+	defer func() {
+		if err := logger.Unload(); err != nil {
+			log.Fatalln(err)
+		}
+	}()
+
 	if err := config.Load(); err != nil {
 		log.Fatalln(err)
 	}
@@ -34,7 +45,11 @@ func main() {
 		port = "8080"
 	}
 
-	if err := http.ListenAndServe(":"+port, mux); err != nil {
+	addr := ":" + port
+
+	log.Println("starting embroidery-api on", addr)
+
+	if err := http.ListenAndServe(addr, mux); err != nil {
 		log.Fatalln(err)
 	}
 }

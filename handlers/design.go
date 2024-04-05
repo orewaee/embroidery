@@ -6,7 +6,6 @@ import (
 	"github.com/orewaee/embroidery-api/models"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
-	"log"
 	"net/http"
 	"os"
 	"strconv"
@@ -39,7 +38,6 @@ func Design(writer http.ResponseWriter, request *http.Request) {
 
 	path := "./" + design.Path
 	bytes, err := os.ReadFile(path)
-	log.Println(path)
 	if err != nil {
 		writer.WriteHeader(http.StatusNotFound)
 		return
