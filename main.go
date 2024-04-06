@@ -7,6 +7,7 @@ import (
 	"github.com/orewaee/embroidery-api/logger"
 	"log"
 	"net/http"
+	"time"
 )
 
 func main() {
@@ -35,21 +36,25 @@ func main() {
 	}()
 
 	mux := http.NewServeMux()
-
-	mux.HandleFunc("GET /design/{id}", handlers.Design)
-
-	mux.HandleFunc("GET /designs", handlers.Designs)
+	mux.Handle("GET /design/{id}", handlers.NewDesign())
+	mux.Handle("GET /designs", handlers.NewDesigns())
 
 	port := config.Get("PORT")
 	if port == "" {
 		port = "8080"
 	}
 
-	addr := ":" + port
+	server := &http.Server{
+		Addr:         ":" + port,
+		Handler:      mux,
+		IdleTimeout:  60 * time.Second,
+		ReadTimeout:  5 * time.Second,
+		WriteTimeout: 5 * time.Second,
+	}
 
-	log.Println("starting embroidery-api on", addr)
+	log.Println("starting embroidery-api on", server.Addr)
 
-	if err := http.ListenAndServe(addr, mux); err != nil {
+	if err := server.ListenAndServe(); err != nil {
 		log.Fatalln(err)
 	}
 }

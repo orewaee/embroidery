@@ -10,7 +10,13 @@ import (
 	"net/http"
 )
 
-func Designs(writer http.ResponseWriter, request *http.Request) {
+type DesignsHandler struct{}
+
+func NewDesigns() *DesignsHandler {
+	return &DesignsHandler{}
+}
+
+func (*DesignsHandler) ServeHTTP(writer http.ResponseWriter, request *http.Request) {
 	writer.Header().Set("Access-Control-Allow-Origin", "*")
 
 	designs := database.GetCollection("designs")

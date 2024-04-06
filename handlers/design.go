@@ -11,7 +11,13 @@ import (
 	"strconv"
 )
 
-func Design(writer http.ResponseWriter, request *http.Request) {
+type DesignHandler struct{}
+
+func NewDesign() *DesignHandler {
+	return &DesignHandler{}
+}
+
+func (*DesignHandler) ServeHTTP(writer http.ResponseWriter, request *http.Request) {
 	writer.Header().Set("Access-Control-Allow-Origin", "*")
 
 	id := request.PathValue("id")
