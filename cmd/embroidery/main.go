@@ -2,9 +2,9 @@ package main
 
 import (
 	"github.com/orewaee/embroidery-api/config"
-	"github.com/orewaee/embroidery-api/database"
-	"github.com/orewaee/embroidery-api/handlers"
-	"github.com/orewaee/embroidery-api/logger"
+	"github.com/orewaee/embroidery-api/internal/database"
+	"github.com/orewaee/embroidery-api/internal/handlers"
+	"github.com/orewaee/embroidery-api/internal/logger"
 	"log"
 	"net/http"
 	"time"

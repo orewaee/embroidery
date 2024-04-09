@@ -2,8 +2,8 @@ package handlers
 
 import (
 	"context"
-	"github.com/orewaee/embroidery-api/database"
-	"github.com/orewaee/embroidery-api/models"
+	"github.com/orewaee/embroidery-api/internal/database"
+	"github.com/orewaee/embroidery-api/internal/models"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"net/http"

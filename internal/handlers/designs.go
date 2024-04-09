@@ -3,8 +3,8 @@ package handlers
 import (
 	"context"
 	"encoding/json"
-	"github.com/orewaee/embroidery-api/database"
-	"github.com/orewaee/embroidery-api/models"
+	"github.com/orewaee/embroidery-api/internal/database"
+	"github.com/orewaee/embroidery-api/internal/models"
 	"go.mongodb.org/mongo-driver/bson"
 	"log"
 	"net/http"
