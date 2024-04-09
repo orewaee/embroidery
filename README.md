@@ -19,3 +19,10 @@ To run the client side, first go to the `web` directory.
 In it, use the commands `pnpm install` and `pnpm dev`.
 The commands must be executed after providing the environment variables.
 Their list can be found in the corresponding directories in the `.env.example` files.
+
+## TODO
+
+- [ ] add dockerfile and docker compose configs
+- [ ] fix env config loader
+- [ ] fix logger
+- [ ] add more layout
