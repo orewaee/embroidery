@@ -2,21 +2,21 @@ package app
 
 import (
 	"github.com/orewaee/embroidery-api/internal/handlers"
-	"log"
+	"github.com/orewaee/embroidery-api/internal/logger"
+	"github.com/orewaee/embroidery-api/internal/middlewares"
 	"net/http"
 	"time"
 )
 
 type App struct {
 	Server *http.Server
-	Logger *log.Logger
 }
 
-func New(addr string, logger *log.Logger) *App {
+func New(addr string) *App {
 	mux := http.NewServeMux()
 
-	mux.Handle("GET /designs", handlers.NewDesigns())
-	mux.Handle("GET /design/{id}", handlers.NewDesign())
+	mux.Handle("GET /designs", middlewares.LogMiddleware(handlers.NewDesigns()))
+	mux.Handle("GET /design/{id}", middlewares.LogMiddleware(handlers.NewDesign()))
 
 	server := &http.Server{
 		Addr:         addr,
@@ -26,13 +26,11 @@ func New(addr string, logger *log.Logger) *App {
 		WriteTimeout: 5 * time.Second,
 	}
 
-	return &App{
-		Server: server,
-		Logger: logger,
-	}
+	return &App{Server: server}
 }
 
 func (app *App) Run() error {
-	app.Logger.Println("running app on addr", app.Server.Addr)
+	l := logger.Get()
+	l.Info().Msgf("running app on %s", app.Server.Addr)
 	return app.Server.ListenAndServe()
 }

@@ -24,7 +24,7 @@ func main() {
 		}
 	}()
 
-	embroidery := app.New(":8080", logger)
+	embroidery := app.New(":8080")
 	if err := embroidery.Run(); err != nil {
 		log.Fatalln(err)
 	}

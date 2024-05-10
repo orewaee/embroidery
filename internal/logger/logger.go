@@ -2,30 +2,34 @@ package logger
 
 import (
 	"fmt"
-	"io"
-	"log"
+	"github.com/rs/zerolog"
 	"os"
+	"sync"
 	"time"
 )
 
-var file *os.File
+var once sync.Once
+var logger zerolog.Logger
 
-func Load() error {
-	if _, err := os.ReadDir("logs"); err != nil {
-		return err
-	}
+func Get() zerolog.Logger {
+	once.Do(func() {
+		file, err := os.OpenFile(
+			fmt.Sprintf("logs/%s.log", time.Now().Format("2006-01-02-15-04-05")),
+			os.O_APPEND|os.O_CREATE|os.O_WRONLY,
+			0664,
+		)
 
-	name := "logs/" + time.Now().Format(time.DateTime) + ".log"
-	file, err := os.OpenFile(name, os.O_CREATE|os.O_WRONLY, 0644)
-	if err != nil {
-		fmt.Println(nil)
-	}
+		if err != nil {
+			panic(err)
+		}
 
-	log.SetOutput(io.MultiWriter(os.Stdout, file))
+		writer := zerolog.MultiLevelWriter(
+			zerolog.ConsoleWriter{Out: os.Stdout},
+			file,
+		)
 
-	return nil
-}
+		logger = zerolog.New(writer).With().Timestamp().Logger()
+	})
 
-func Unload() error {
-	return file.Close()
+	return logger
 }

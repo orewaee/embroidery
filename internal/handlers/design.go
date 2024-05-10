@@ -7,7 +7,6 @@ import (
 	"github.com/orewaee/embroidery-api/internal/models"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
-	"log"
 	"net/http"
 	"os"
 	"strconv"
@@ -23,8 +22,6 @@ func (*DesignHandler) ServeHTTP(writer http.ResponseWriter, request *http.Reques
 	writer.Header().Set("Access-Control-Allow-Origin", "*")
 
 	id := request.PathValue("id")
-
-	log.Println(id)
 
 	designs := database.GetCollection("designs")
 
