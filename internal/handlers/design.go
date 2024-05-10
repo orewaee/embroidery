@@ -2,10 +2,12 @@ package handlers
 
 import (
 	"context"
+	"fmt"
 	"github.com/orewaee/embroidery-api/internal/database"
 	"github.com/orewaee/embroidery-api/internal/models"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
+	"log"
 	"net/http"
 	"os"
 	"strconv"
@@ -21,6 +23,8 @@ func (*DesignHandler) ServeHTTP(writer http.ResponseWriter, request *http.Reques
 	writer.Header().Set("Access-Control-Allow-Origin", "*")
 
 	id := request.PathValue("id")
+
+	log.Println(id)
 
 	designs := database.GetCollection("designs")
 
@@ -42,19 +46,17 @@ func (*DesignHandler) ServeHTTP(writer http.ResponseWriter, request *http.Reques
 		return
 	}
 
-	path := "./" + design.Path
+	path := fmt.Sprintf("./designs/%s.jpg", id)
 	bytes, err := os.ReadFile(path)
 	if err != nil {
 		writer.WriteHeader(http.StatusNotFound)
 		return
 	}
 
-	length := len(bytes)
-
 	if _, err := writer.Write(bytes); err != nil {
 		writer.WriteHeader(http.StatusInternalServerError)
 	} else {
-		writer.Header().Add("Content-Type", "image/"+design.Extension)
-		writer.Header().Add("Content-Length", strconv.Itoa(length))
+		writer.Header().Add("Content-Type", "image/jpeg")
+		writer.Header().Add("Content-Length", strconv.Itoa(len(bytes)))
 	}
 }

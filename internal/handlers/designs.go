@@ -6,7 +6,6 @@ import (
 	"github.com/orewaee/embroidery-api/internal/database"
 	"github.com/orewaee/embroidery-api/internal/models"
 	"go.mongodb.org/mongo-driver/bson"
-	"log"
 	"net/http"
 )
 
@@ -29,7 +28,6 @@ func (*DesignsHandler) ServeHTTP(writer http.ResponseWriter, request *http.Reque
 
 	var list []models.Design
 	if err := cur.All(context.TODO(), &list); err != nil {
-		log.Println(err)
 		writer.WriteHeader(http.StatusInternalServerError)
 		return
 	}
