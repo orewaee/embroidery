@@ -1,22 +1,23 @@
 <script setup lang="ts">
+const config = useRuntimeConfig();
+
 interface Design {
     id: string,
     name: string,
     tag: string
 }
 
-const {data} = await useFetch("http://localhost:8080/designs");
-const designs = data.value as Design[];
 
-const config = useRuntimeConfig();
+const {data} = await useFetch(config.public.apiUrl + "designs");
+const designs = data.value as Design[];
 </script>
 
 <template>
     <div class="designs">
         <div class="design" v-for="(design, i) in designs" :key="i">
             <img
-                :src="config.apiUrl + 'design/' + design.id"
-                :alt="i"
+                :src="config.public.apiUrl + 'design/' + design.id"
+                :alt="i.toString()"
                 draggable="false"
             >
             <div class="info">
