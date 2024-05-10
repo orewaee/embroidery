@@ -1,4 +1,14 @@
 <script setup lang="ts">
+useHead({
+    title: "embroidery",
+    meta: [
+        {
+            name: "description",
+            content: "Choose a unique embroidery design for yourself"
+        }
+    ]
+})
+
 const config = useRuntimeConfig();
 
 interface Design {
@@ -12,6 +22,7 @@ const designs = data.value as Design[];
 </script>
 
 <template>
+    <Header />
     <div class="designs">
         <div class="design" v-for="(design, i) in designs" :key="i">
             <img
