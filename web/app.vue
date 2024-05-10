@@ -7,7 +7,6 @@ interface Design {
     tag: string
 }
 
-
 const {data} = await useFetch(config.public.apiUrl + "designs");
 const designs = data.value as Design[];
 </script>
@@ -20,6 +19,7 @@ const designs = data.value as Design[];
                 :alt="i.toString()"
                 draggable="false"
             >
+
             <div class="info">
                 <p class="name">{{design.name}}</p>
                 <p class="tag">{{design.tag}}</p>
@@ -45,16 +45,14 @@ body {
 .designs {
     max-width: 1128px;
 
-    display: flex;
-    flex-wrap: wrap;
-    gap: 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(264px, 1fr));
+    grid-gap: 24px;
 
     margin: 0 auto;
     padding: 24px;
 
     .design {
-        max-width: 264px;
-
         display: flex;
         flex-direction: column;
         gap: 12px;
@@ -80,6 +78,8 @@ body {
                 background-color: #fff;
 
                 border-radius: 12px;
+
+                user-select: none;
 
                 padding: 0 8px;
             }
