@@ -19,7 +19,6 @@ Use the commands provided below to achieve this.
 Commands must be executed after providing environment variables.
 A list of them for each part of the app can be found in the `.env.example` file in the corresponding dirs.
 
-Также необ
 
 #### Server
 
@@ -36,3 +35,11 @@ In it, use the commands `pnpm install` and `pnpm dev`.
 
 You can deploy database in any way convenient for you, for example, use Docker for this.
 In the `deploy` dir there is a config file `docker-compose.yml`.
+
+
+## Routes
+
+At the moment, only two routes are provided to receive data:
+
+- `GET /designs` - returns a list of visible designs along with their ids, names, and tags.
+- `GET /design/{id}` - returns an image byte array with content type `image/jpeg`. 
