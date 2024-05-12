@@ -3,26 +3,36 @@
 A simple mini-project that is a portfolio of embroidery designs.
 The server part is written using the std Go http library.
 MongoDB is used as the database.
-Static image files are stored in one of the application directories.
+Static image files are stored in one of the app dirs.
 
-Images of designs shown in the screenshot are owned by [EmbroEVCH](https://t.me/+bwtwEvm0Zr0zNjEy).
+Images of the designs shown in the screenshot below are owned by [EmbroEVCH](https://t.me/+bwtwEvm0Zr0zNjEy).
 I'm not going to use them to make money. I really like their work.
 
 <img src="https://i.imgur.com/HGwmjYB.png" alt="screenshot">
 
 
-## Launch
+## Run
 
-To start, you need to start the server and client parts.
-To run the server side, use the `go run .` command in the root directory of the project.
-To run the client side, first go to the `web` directory.
+For the app to fully work, you need to run the server and client parts, as well as the database.
+Use the commands provided below to achieve this.
+
+Commands must be executed after providing environment variables.
+A list of them for each part of the app can be found in the `.env.example` file in the corresponding dirs.
+
+Также необ
+
+#### Server
+
+To run the server side, use the `go run .` command in the root dir of the project.
+
+
+#### Client
+
+To run the client side, first go to the `web` dir.
 In it, use the commands `pnpm install` and `pnpm dev`.
-The commands must be executed after providing the environment variables.
-Their list can be found in the corresponding directories in the `.env.example` files.
 
-## TODO
 
-- [ ] add dockerfile and docker compose configs
-- [ ] fix env config loader
-- [ ] fix logger
-- [ ] add more layout
+#### Database
+
+You can deploy database in any way convenient for you, for example, use Docker for this.
+In the `deploy` dir there is a config file `docker-compose.yml`.
