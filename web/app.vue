@@ -1,6 +1,13 @@
 <script setup lang="ts">
 useHead({
-    title: "embroidery",
+    title: "EmbroEVCH",
+    link: [
+        {
+            rel: "icon",
+            type: "image/png",
+            href: "favicon.png",
+        }
+    ],
     meta: [
         {
             name: "description",
