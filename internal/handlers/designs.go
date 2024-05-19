@@ -15,7 +15,7 @@ func NewDesigns() *DesignsHandler {
 	return &DesignsHandler{}
 }
 
-func (*DesignsHandler) ServeHTTP(writer http.ResponseWriter, request *http.Request) {
+func (*DesignsHandler) ServeHTTP(writer http.ResponseWriter, _ *http.Request) {
 	writer.Header().Set("Access-Control-Allow-Origin", "*")
 
 	designs := database.GetCollection("designs")
