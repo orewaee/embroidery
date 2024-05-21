@@ -8,7 +8,7 @@ Static image files are stored in one of the app dirs.
 Images of the designs shown in the screenshot below are owned by [EmbroEVCH](https://t.me/+bwtwEvm0Zr0zNjEy).
 I'm not going to use them to make money. I really like their work.
 
-<img src="https://i.imgur.com/HGwmjYB.png" alt="screenshot">
+<img src="https://i.imgur.com/UC3oxIY.png" alt="screenshot">
 
 
 ## Run
