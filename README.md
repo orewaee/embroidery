@@ -1,9 +1,11 @@
 ## About
 
 A simple mini-project that is a portfolio of embroidery designs.
-The server part is written using the std Go http library.
+The server part is written using the net/http std lib.
 MongoDB is used as the database.
 Static image files are stored in one of the app dirs.
+Nuxt is used to write the client part.
+I'm not that good at writing frontend, so there may be some problems with it.
 
 Images of the designs shown in the screenshot below are owned by [EmbroEVCH](https://t.me/+bwtwEvm0Zr0zNjEy).
 I'm not going to use them to make money. I really like their work.
