@@ -4,7 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"github.com/orewaee/embroidery-api/internal/database"
-	"github.com/orewaee/embroidery-api/internal/models"
+	"github.com/orewaee/embroidery-api/pkg/models"
 	"go.mongodb.org/mongo-driver/bson"
 	"net/http"
 )

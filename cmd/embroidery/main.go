@@ -4,7 +4,7 @@ import (
 	"github.com/orewaee/embroidery-api/config"
 	"github.com/orewaee/embroidery-api/internal/app"
 	"github.com/orewaee/embroidery-api/internal/database"
-	"github.com/orewaee/embroidery-api/internal/logger"
+	"github.com/orewaee/embroidery-api/pkg/logger"
 )
 
 func main() {

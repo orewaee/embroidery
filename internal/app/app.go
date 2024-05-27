@@ -2,8 +2,8 @@ package app
 
 import (
 	"github.com/orewaee/embroidery-api/internal/handlers"
-	"github.com/orewaee/embroidery-api/internal/logger"
 	"github.com/orewaee/embroidery-api/internal/middlewares"
+	"github.com/orewaee/embroidery-api/pkg/logger"
 	"github.com/rs/zerolog"
 	"net/http"
 	"time"

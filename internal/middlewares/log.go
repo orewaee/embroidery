@@ -1,7 +1,7 @@
 package middlewares
 
 import (
-	"github.com/orewaee/embroidery-api/internal/logger"
+	"github.com/orewaee/embroidery-api/pkg/logger"
 	"net/http"
 )
 
