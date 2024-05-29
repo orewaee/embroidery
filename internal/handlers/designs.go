@@ -11,7 +11,7 @@ import (
 
 type DesignsHandler struct{}
 
-func NewDesigns() *DesignsHandler {
+func NewDesignsHandler() *DesignsHandler {
 	return &DesignsHandler{}
 }
 

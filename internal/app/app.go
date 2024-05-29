@@ -24,8 +24,9 @@ func New(addr string) *App {
 func (app *App) Run() error {
 	mux := http.NewServeMux()
 
-	mux.Handle("GET /designs", middlewares.LogMiddleware(handlers.NewDesigns()))
-	mux.Handle("GET /design/{id}", middlewares.LogMiddleware(handlers.NewDesign()))
+	mux.Handle("GET /designs", middlewares.LogMiddleware(handlers.NewDesignsHandler()))
+	mux.Handle("GET /design/{id}", middlewares.LogMiddleware(handlers.NewDesignHandler()))
+	mux.Handle("GET /ping", middlewares.LogMiddleware(handlers.NewPingHandler()))
 
 	server := &http.Server{
 		Addr:         app.addr,
